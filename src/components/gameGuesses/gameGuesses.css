@@ -1,0 +1,45 @@
+.guess-container{
+    display: grid;
+    grid-template-columns: 18% auto 18%;
+    background-color: black;
+    gap: 8px 4px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: max-content;
+    margin-top: 8px;
+    padding: 4px;
+    border-radius: 4px;
+    max-height: 380px;
+}
+
+.guess,.guess-skill{
+    background-color: var(--main-blue);
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guess-img{
+    width: 100%;
+}
+
+.guess-skill-img{
+    width: 2em;
+}
+
+.guess-skill-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+    font-size: 0.8em;
+}
+
+.guess.correct,.guess-skill.correct{
+    background-color: var(--correct-color);
+}
+
+.guess.incorrect,.guess-skill.incorrect{
+    background-color: var(--incorrect-color);
+}

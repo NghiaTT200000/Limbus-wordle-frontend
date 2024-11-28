@@ -1,0 +1,16 @@
+.game-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.game{
+    width: 100%;
+    max-width: var(--max-width-game-container);
+    height: 550px;
+    margin-top: 16px;
+    padding: 8px;
+    background-color: rgb(0, 0, 0,0.5);
+    border: solid yellow 1px;
+    border-radius: 4px;
+}

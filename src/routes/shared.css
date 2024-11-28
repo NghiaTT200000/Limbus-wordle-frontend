@@ -1,0 +1,30 @@
+.game-header{
+    width: 100%;
+    max-width: calc(var(--max-width-game-container) * 70%);
+    border-radius: 8px;
+    background-color: var(--main-blue);
+}
+
+.game-header-footer{
+    width: 100%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 8px;
+    background-color: var(--main-black);
+    margin-top: auto;
+}
+
+.game-header-footer-score{
+    display: flex;
+    justify-content: space-around;
+    gap: 4px;
+}
+
+.game-input-container{
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.site-header{
+    font-size: 2em;
+}

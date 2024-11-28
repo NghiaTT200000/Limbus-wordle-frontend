@@ -1,0 +1,16 @@
+.header{
+    background-color: var(--main-blue);
+    width: 100vw;
+    padding: 0.5em;
+    display: flex;
+    gap: 8px;
+}
+
+.donate-header-button{
+    margin-left: auto;
+}
+
+.donate-header-button img{
+    width: 24px;
+    height: 24px;
+}

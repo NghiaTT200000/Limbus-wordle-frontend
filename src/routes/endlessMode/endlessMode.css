@@ -1,0 +1,6 @@
+.endless-mode-container{
+    max-width: calc( var(--max-width-game-container) * 70%);
+    width: 100%;
+    height: 100%;
+}
+

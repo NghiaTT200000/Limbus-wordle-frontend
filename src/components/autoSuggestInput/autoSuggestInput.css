@@ -1,0 +1,38 @@
+.auto-suggest-input-container{
+    width: 100%;
+    position: relative;
+    max-width: 250px;
+    margin: auto;
+}
+
+.auto-suggest-input-container input{
+    width: 100%;
+}
+
+.suggestion-container{
+    position: absolute;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: white;
+}
+
+
+.suggestion{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    color: black;
+    cursor: pointer;
+}
+
+.suggestion:hover,.suggestion.active{
+    background-color: var(--button-blue);
+    color: white;
+}
+
+.suggestion-img{
+    width: 5em;
+    height: 5em;
+}
