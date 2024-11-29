@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import "./autoSuggestInput.css"
 
-const AutoSuggestInput = ({availableSuggestions})=>{
+const AutoSuggestInput = ({availableSuggestions,submitCb})=>{
     const [currSuggestion,setCurrSuggestion] = useState("")
     const [suggesstions,setSuggestions] = useState(availableSuggestions)
     const [isActive,setIsActive] = useState(false)
@@ -17,8 +17,8 @@ const AutoSuggestInput = ({availableSuggestions})=>{
     useEffect(()=>{
         setSuggestions(
             availableSuggestions
-            .filter(suggesstions=>suggesstions.txt.toLowerCase().match(currSuggestion.toLowerCase())))
-    },[currSuggestion])
+            .filter(suggesstions=>suggesstions.name.toLowerCase().match(currSuggestion.toLowerCase())))
+    },[currSuggestion,availableSuggestions])
 
     useEffect(()=>{
         const container = suggestionContainerRef.current
@@ -50,15 +50,25 @@ const AutoSuggestInput = ({availableSuggestions})=>{
                 e.preventDefault()
                 decreaseChoice()
             }
+            if(e.key==="Enter"){
+                e.preventDefault()
+                submitCb(suggesstions[currChoice])
+                setCurrSuggestion("")
+                setIsActive(false)
+            }
         }}
         autoComplete="off"/>
         {isActive?
             <div className="suggestion-container" ref={suggestionContainerRef}>
                 {suggesstions
-                    .map((suggesstions,i)=><div className={`suggestion ${i===currChoice?"active":""}`} key={i}
-                        onClick={()=>console.log("Hell")}>
-                        <img className="suggestion-img" src={suggesstions.img} alt={suggesstions.txt+" icon"} />
-                        <p>{suggesstions.txt}</p>
+                    .map((suggesstion,i)=><div className={`suggestion ${i===currChoice?"active":""}`} key={i}
+                        onClick={()=>{
+                            submitCb(suggesstion)
+                            setCurrSuggestion("")
+                            setIsActive(false)
+                        }}>
+                        <img className="suggestion-img" src={suggesstion.icon} alt={suggesstion.name+" icon"} />
+                        <p>{suggesstion.name}</p>
                     </div>)}
             </div>
         :<></>}

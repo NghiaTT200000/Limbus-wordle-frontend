@@ -12,12 +12,18 @@
     padding: 8px;
     background-color: var(--main-black);
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 .game-header-footer-score{
     display: flex;
     justify-content: space-around;
     gap: 4px;
+    width: 100%;
 }
 
 .game-input-container{
@@ -27,4 +33,27 @@
 
 .site-header{
     font-size: 2em;
+}
+
+.loader-container{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+.correct-img{
+    width: 100px;
+    height: 100px;
+}
+
+.game-input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.play-again-btn{
+    font-size: 1.2em;
+    margin: auto;
 }
