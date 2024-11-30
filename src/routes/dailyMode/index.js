@@ -34,9 +34,9 @@ const DailyMode = ()=>{
             isWon=true
             isGameOver=true
 
-            const streak = localStorage.getItem("dailyModestreak")
+            const streak = localStorage.getItem("dailyModeStreak")
             const bestStreak = localStorage.getItem("dailyModeBestStreak")
-            if(streak) localStorage.setItem("dailyModestreak",JSON.parse(streak)+1)
+            if(streak) localStorage.setItem("dailyModeStreak",JSON.parse(streak)+1)
             if(bestStreak) localStorage.setItem("dailyModeBestStreak",Math.max(JSON.parse(streak)+1,JSON.parse(bestStreak)))
         } 
 
@@ -45,8 +45,8 @@ const DailyMode = ()=>{
         }
         
         if(isGameOver&&!isWon){
-            const streak = localStorage.getItem("dailyModestreak")
-            if(streak) localStorage.setItem("dailyModestreak",JSON.parse(0))
+            const streak = localStorage.getItem("dailyModeStreak")
+            if(streak) localStorage.setItem("dailyModeStreak",JSON.parse(streak)+1)
         }
 
         setGameState({
@@ -69,13 +69,14 @@ const DailyMode = ()=>{
     }
 
     const fetchIdentities = async()=>{
-        const response = await apiCaller("http://localhost:8080"+"/API/All");
+        console.log(process.env)
+        const response = await apiCaller(process.env.REACT_APP_BACKEND_URL+"/API/All");
         const result = await response.json()
         setIdentities(Object.keys(result).map((k)=>result[k]))
     }
 
     const getDailyIdentity = async ()=>{
-        const response = await apiCaller("http://localhost:8080"+"/API/TodayIdentity");
+        const response = await apiCaller(process.env.REACT_APP_BACKEND_URL+"/API/TodayIdentity");
         const result = await response.json()
         if(todayID!==result.todayID){
             setTodayID(result.todayID)

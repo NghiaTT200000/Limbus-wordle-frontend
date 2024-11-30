@@ -4,12 +4,12 @@ import "./siteHeader.css"
 const SiteHeader = ()=>{
 
     return <header className="header">
-        <Link to={"/daily"}>
+        <Link to={"/"}>
             <button className="main-button">
                 Daily
             </button>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/endless"}>
             <button className="main-button">
                 Endless
             </button>

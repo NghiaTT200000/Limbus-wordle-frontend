@@ -37,6 +37,11 @@ const AutoSuggestInput = ({availableSuggestions,submitCb})=>{
         })
     },[])
 
+    useEffect(()=>{
+        setCurrChoice(0)
+        if(currSuggestion) setIsActive(true)
+    },[currSuggestion])
+
     return <div className="auto-suggest-input-container" ref={suggestionInputContainerRef}>
         <input type="text" name="guess" id="guess" value={currSuggestion} 
         onChange={(e)=>{setCurrSuggestion(e.target.value)}}
@@ -52,9 +57,11 @@ const AutoSuggestInput = ({availableSuggestions,submitCb})=>{
             }
             if(e.key==="Enter"){
                 e.preventDefault()
-                submitCb(suggesstions[currChoice])
-                setCurrSuggestion("")
-                setIsActive(false)
+                if(suggesstions.length>0){
+                    submitCb(suggesstions[currChoice])
+                    setCurrSuggestion("")
+                    setIsActive(false)
+                }
             }
         }}
         autoComplete="off"/>
@@ -63,10 +70,13 @@ const AutoSuggestInput = ({availableSuggestions,submitCb})=>{
                 {suggesstions
                     .map((suggesstion,i)=><div className={`suggestion ${i===currChoice?"active":""}`} key={i}
                         onClick={()=>{
-                            submitCb(suggesstion)
-                            setCurrSuggestion("")
-                            setIsActive(false)
-                        }}>
+                            if(suggesstions.length>0){
+                                submitCb(suggesstion)
+                                setCurrSuggestion("")
+                                setIsActive(false)
+                            }
+                        }}
+                        >
                         <img className="suggestion-img" src={suggesstion.icon} alt={suggesstion.name+" icon"} />
                         <p>{suggesstion.name}</p>
                     </div>)}

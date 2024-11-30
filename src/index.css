@@ -17,6 +17,11 @@ a{
   text-decoration: none;
 }
 
+@font-face {
+  font-family: 'Mikodacs'; /*a name to be used later*/
+  src: url('/public/Fonts/mikodacs/mikodacs.regular.ttf'); /*URL to font*/
+}
+
 body{
   background: url("/public/img/background.jpg");
   background-repeat: no-repeat, repeat;
@@ -25,7 +30,9 @@ body{
   background-position: center;
   color: white;
   font-size: 16px;
+  font-family: 'Mikodacs';
 }
+
 
 .main-button{
   background-color: var(--button-blue);

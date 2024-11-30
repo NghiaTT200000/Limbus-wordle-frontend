@@ -1,13 +1,22 @@
+import React from "react"
 import "./gameGuesses.css"
 
 const GameGuesses = ({correctGuess,guesses})=>{
+    const printArrow = (correctSkill,guessSkill)=>{
+        if(correctSkill.skillCoinCount!==guessSkill.skillCoinCount){
+            return correctSkill.skillCoinCount>guessSkill.skillCoinCount?
+            "arrow_upward":"arrow_downward"
+        }
+        return ""
+    }
+
     return <div className="guess-container">
         <div className="guess">ID</div>
         <div className="guess">Skills</div>
         <div className="guess">Sinner</div>
 
-        {guesses.map((guess,i)=><>
-            <div key={i} className={`guess ${correctGuess.name===guess.name?"correct":"incorrect"}`}>
+        {guesses.map((guess,i)=><React.Fragment key={i}>
+            <div className={`guess ${correctGuess.name===guess.name?"correct":"incorrect"}`}>
                 <img className="guess-img" src={guess.icon} alt={guess.name+" icon"} />
             </div>
             <div className="guess-skill-container">
@@ -41,14 +50,26 @@ const GameGuesses = ({correctGuess,guesses})=>{
                 </div>
                 
                 <div className="guess-skill">Coin count</div>
-                <div className={`guess-skill ${correctGuess.skills[0].skillCoinCount===guess.skills[0].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[0].skillCoinCount}</div>
-                <div className={`guess-skill ${correctGuess.skills[1].skillCoinCount===guess.skills[1].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[1].skillCoinCount}</div>
-                <div className={`guess-skill ${correctGuess.skills[2].skillCoinCount===guess.skills[2].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[2].skillCoinCount}</div>
+                <div className={`guess-skill ${correctGuess.skills[0].skillCoinCount===guess.skills[0].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[0].skillCoinCount}
+                    <span class="material-icons">
+                        {printArrow(correctGuess.skills[0],guess.skills[0])}
+                    </span>
+                </div>
+                <div className={`guess-skill ${correctGuess.skills[1].skillCoinCount===guess.skills[1].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[1].skillCoinCount}
+                    <span class="material-icons">
+                        {printArrow(correctGuess.skills[1],guess.skills[1])}
+                    </span>
+                </div>
+                <div className={`guess-skill ${correctGuess.skills[2].skillCoinCount===guess.skills[2].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[2].skillCoinCount}
+                    <span class="material-icons">
+                        {printArrow(correctGuess.skills[2],guess.skills[2])}
+                    </span>
+                </div>
             </div>
             <div className={`guess ${correctGuess.sinner===guess.sinner?"correct":"incorrect"}`}>
                 <img className={`guess-img`} src={"/img/sinner-icon/"+guess.sinner.replace(" ","_")+"_Icon.png"} alt={"sinner icon"} />
             </div>
-        </>)}
+        </React.Fragment>)}
 
       
     </div>

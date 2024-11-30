@@ -10,13 +10,19 @@ const EndlessMode = ()=>{
     const [identities,setIdentities] = useState([])
     const [isFetchingData,setIsFetchingData] = useState(false)
     const [fetchSuccessful,setFetchSuccessful] = useState(true)
-    const [gameState,setGameState] = useState({
-        correctIdentity:{},
-        guesses:[],
-        totalGuesses:0,
-        isGameOver:false,
-        isWon:false,
-        maxGuesses:7
+    const [gameState,setGameState] = useState(()=>{
+        const dailyMode = localStorage.getItem("endlessMode")
+        if(!dailyMode)return ({
+            correctIdentity:{},
+            guesses:[],
+            totalGuesses:0,
+            isGameOver:false,
+            isWon:false,
+            maxGuesses:7
+        })
+        else {
+            return JSON.parse(dailyMode)
+        }
     })
 
     const addGuess = (newGuess)=>{
@@ -27,9 +33,9 @@ const EndlessMode = ()=>{
             isWon=true
             isGameOver=true
 
-            const streak = localStorage.getItem("endlessModestreak")
+            const streak = localStorage.getItem("endlessModeStreak")
             const bestStreak = localStorage.getItem("endlessModeBestStreak")
-            if(streak) localStorage.setItem("endlessModestreak",JSON.parse(streak)+1)
+            if(streak) localStorage.setItem("endlessModeStreak",JSON.parse(streak)+1)
             if(bestStreak) localStorage.setItem("endlessModeBestStreak",Math.max(JSON.parse(streak)+1,JSON.parse(bestStreak)))
         } 
 
@@ -38,8 +44,8 @@ const EndlessMode = ()=>{
         }
         
         if(isGameOver&&!isWon){
-            const streak = localStorage.getItem("endlessModestreak")
-            if(streak) localStorage.setItem("endlessModestreak",JSON.parse(0))
+            const streak = localStorage.getItem("endlessModeStreak")
+            if(streak) localStorage.setItem("endlessModeStreak",JSON.parse(streak)+1)
         }
 
         setGameState({
@@ -65,7 +71,7 @@ const EndlessMode = ()=>{
     const fetchIdentities = async()=>{
         setIsFetchingData(true)
         try {
-            const response = await apiCaller("http://localhost:8080"+"/API/All");
+            const response = await apiCaller(process.env.REACT_APP_BACKEND_URL+"/API/All");
             const result = await response.json()
             setIdentities(Object.keys(result).map((k)=>result[k]))
             setFetchSuccessful(true)
@@ -95,12 +101,8 @@ const EndlessMode = ()=>{
     },[])
 
     useEffect(()=>{
-        if(JSON.stringify(gameState.correctIdentity)!=="{}")localStorage.setItem("endlessMode",JSON.stringify(gameState))
+        localStorage.setItem("endlessMode",JSON.stringify(gameState))
     },[JSON.stringify(gameState)])
-
-    useEffect(()=>{
-        if(JSON.stringify(gameState.correctIdentity)==="{}"&&identities.length>0) resetGame()
-    },[JSON.stringify(identities)])
 
     return <GameContainer>
         {isFetchingData?

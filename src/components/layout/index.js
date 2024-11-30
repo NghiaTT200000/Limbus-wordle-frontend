@@ -9,8 +9,8 @@ const Layout = ()=>{
         <main className="layout">
             <SiteHeader></SiteHeader>
             <Routes>
-                <Route index element={<EndlessMode></EndlessMode>}></Route>
-                <Route path="/daily" element={<DailyMode></DailyMode>}></Route>
+                <Route path="/endless" element={<EndlessMode></EndlessMode>}></Route>
+                <Route index element={<DailyMode></DailyMode>}></Route>
             </Routes>
         </main>
     </>
