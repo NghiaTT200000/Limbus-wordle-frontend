@@ -43,7 +43,7 @@ const GameHeaderDailyMode = ({availableSuggestions,
             </>}
         </div>
         <div className="game-header-footer">
-            <p>Yesterday identity was: <img className="yesterday-correct-icon" src={previousCorrectIcon} alt="Previous correct icon" /></p>
+            <p className="yesterday-txt">Yesterday identity was: <img className="yesterday-correct-icon" src={previousCorrectIcon} alt="Previous correct icon" /></p>
             <div className="game-header-footer-score">
                 <p>Streak: {streak}</p>
                 <p>Best streak: {bestStreak}</p>

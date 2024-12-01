@@ -2,3 +2,9 @@
     width: 2em;
     margin: auto;
 }
+
+.yesterday-txt{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

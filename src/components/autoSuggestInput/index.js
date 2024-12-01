@@ -15,9 +15,14 @@ const AutoSuggestInput = ({availableSuggestions,submitCb})=>{
     const decreaseChoice=()=>setCurrChoice(currChoice-1<0?suggesstions.length-1:currChoice-1)
 
     useEffect(()=>{
+        const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters
+        const escapedSuggestion = escapeRegex(currSuggestion.toLowerCase());
+    
         setSuggestions(
-            availableSuggestions
-            .filter(suggesstions=>suggesstions.name.toLowerCase().match(currSuggestion.toLowerCase())))
+            availableSuggestions.filter((suggestion) =>
+                suggestion.name.toLowerCase().includes(escapedSuggestion)
+            )
+        );
     },[currSuggestion,availableSuggestions])
 
     useEffect(()=>{

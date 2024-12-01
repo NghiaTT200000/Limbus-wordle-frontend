@@ -8,6 +8,7 @@
     left: 0;
     border-bottom: 2px solid black;
     position: fixed;
+    align-items: center;
 }
 
 .donate-header-button{
@@ -15,6 +16,10 @@
 }
 
 .donate-header-button img{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+}
+
+.nav-btn{
+    padding: 8px 12px;
 }
