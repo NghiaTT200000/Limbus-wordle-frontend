@@ -104,6 +104,11 @@ const EndlessMode = ()=>{
         localStorage.setItem("endlessMode",JSON.stringify(gameState))
     },[JSON.stringify(gameState)])
 
+
+    useEffect(()=>{
+        if(!gameState.correctIdentity||JSON.stringify(gameState.correctIdentity)==="{}")resetGame()
+    },[JSON.stringify(identities)])
+
     return <GameContainer>
         {isFetchingData?
         <div className="loader-container">
