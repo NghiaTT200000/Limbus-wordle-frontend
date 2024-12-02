@@ -69,7 +69,6 @@ const DailyMode = ()=>{
     }
 
     const fetchIdentities = async()=>{
-        console.log(process.env)
         const response = await apiCaller(process.env.REACT_APP_BACKEND_URL+"/API/All");
         const result = await response.json()
         setIdentities(Object.keys(result).map((k)=>result[k]))
