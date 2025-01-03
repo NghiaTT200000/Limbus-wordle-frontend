@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import AutoSuggestInput from "../../../../components/autoSuggestInput"
 import "./gameHeader.css"
+import React from "react"
+import IIdentity from "../../../../utils/interfaces/IIdentity"
 
 const GameHeaderDailyMode = ({availableSuggestions,
     addGuess,
@@ -9,20 +11,29 @@ const GameHeaderDailyMode = ({availableSuggestions,
     correctIcon,
     previousCorrectIcon,
     isOver,
-    isWon})=>{
+    isWon}:{
+        availableSuggestions: IIdentity[],
+        addGuess:(guess:IIdentity)=>void,
+        currGuesses: number,
+        maxGuesses: number,
+        isOver: boolean,
+        correctIcon:string,
+        previousCorrectIcon:string,
+        isWon:boolean
+    })=>{
     const [bestStreak,setBestStreak] = useState(0)
     const [streak,setStreak]  = useState(0)
 
     useEffect(()=>{
         if(localStorage.getItem("dailyModeStreak")){
-            setStreak(JSON.parse(localStorage.getItem("dailyModeStreak")))
+            setStreak(JSON.parse(localStorage.getItem("dailyModeStreak")||""))
         }
         else localStorage.setItem("dailyModeStreak",JSON.stringify(streak))
     },[localStorage.getItem("dailyModeStreak")])
 
     useEffect(()=>{
         if(localStorage.getItem("dailyModeBestStreak")){
-            setBestStreak(JSON.parse(localStorage.getItem("dailyModeBestStreak")))
+            setBestStreak(JSON.parse(localStorage.getItem("dailyModeBestStreak")||""))
         }
         else localStorage.setItem("dailyModeBestStreak",JSON.stringify(bestStreak))
     },[localStorage.getItem("dailyModeBestStreak")])

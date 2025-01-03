@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import AutoSuggestInput from "../../../../components/autoSuggestInput"
 import "./gameHeader.css"
+import React from "react"
+import IIdentity from "../../../../utils/interfaces/IIdentity"
 
 const GameHeaderEndlessMode = ({availableSuggestions,
     addGuess,
@@ -9,20 +11,29 @@ const GameHeaderEndlessMode = ({availableSuggestions,
     correctIcon,
     isOver,
     isWon,
-    resetCb})=>{
+    resetCb}:{
+        availableSuggestions: IIdentity[],
+        addGuess:(guess:IIdentity)=>void,
+        currGuesses: number,
+        maxGuesses: number,
+        isOver: boolean,
+        correctIcon:string,
+        isWon:boolean,
+        resetCb:()=>void
+    })=>{
     const [bestStreak,setBestStreak] = useState(0)
     const [streak,setStreak]  = useState(0)
 
     useEffect(()=>{
         if(localStorage.getItem("endlessModeStreak")){
-            setStreak(JSON.parse(localStorage.getItem("endlessModeStreak")))
+            setStreak(JSON.parse(localStorage.getItem("endlessModeStreak")||""))
         }
         else localStorage.setItem("endlessModeStreak",JSON.stringify(streak))
     },[localStorage.getItem("endlessModeStreak")])
 
     useEffect(()=>{
         if(localStorage.getItem("endlessModeBestStreak")){
-            setBestStreak(JSON.parse(localStorage.getItem("endlessModeBestStreak")))
+            setBestStreak(JSON.parse(localStorage.getItem("endlessModeBestStreak")||""))
         }
         else localStorage.setItem("endlessModeBestStreak",JSON.stringify(bestStreak))
     },[localStorage.getItem("endlessModeBestStreak")])

@@ -3,11 +3,7 @@ import IGameState from "../interfaces/IGameState";
 import IIdentity from "../interfaces/IIdentity";
 
 
-export default function useGameState({gameStateLocalName,bestStreakLocalName,streakLocalName}:{
-    gameStateLocalName:string,
-    bestStreakLocalName:string,
-    streakLocalName:string
-}):{
+export default function useLocalGameState(gameStateLocalName:string,bestStreakLocalName:string,streakLocalName:string):{
     gameState:IGameState,
     setGameState:(g:IGameState)=>void,
     addGuess:(g:IIdentity)=>void,

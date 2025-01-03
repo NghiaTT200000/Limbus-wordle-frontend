@@ -3,6 +3,7 @@ import SiteHeader from "../siteHeader"
 import "./layout.css"
 import EndlessMode from "../../routes/endlessMode"
 import DailyMode from "../../routes/dailyMode"
+import React from "react"
 
 const Layout = ()=>{
     return <>

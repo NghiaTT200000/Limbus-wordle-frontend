@@ -1,8 +1,13 @@
 import React from "react"
 import "./gameGuesses.css"
+import IIdentity from "../../utils/interfaces/IIdentity"
+import ISinnerSkill from "../../utils/interfaces/ISinnerSkill"
 
-const GameGuesses = ({correctGuess,guesses})=>{
-    const printArrow = (correctSkill,guessSkill)=>{
+const GameGuesses = ({correctGuess,guesses}:{
+    correctGuess:IIdentity,
+    guesses:IIdentity[]
+})=>{
+    const printArrow = (correctSkill:ISinnerSkill,guessSkill:ISinnerSkill)=>{
         if(correctSkill.skillCoinCount!==guessSkill.skillCoinCount){
             return correctSkill.skillCoinCount>guessSkill.skillCoinCount?
             "arrow_upward":"arrow_downward"
@@ -51,17 +56,17 @@ const GameGuesses = ({correctGuess,guesses})=>{
                 
                 <div className="guess-skill">Coin count</div>
                 <div className={`guess-skill ${correctGuess.skills[0].skillCoinCount===guess.skills[0].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[0].skillCoinCount}
-                    <span class="material-icons">
+                    <span className="material-icons">
                         {printArrow(correctGuess.skills[0],guess.skills[0])}
                     </span>
                 </div>
                 <div className={`guess-skill ${correctGuess.skills[1].skillCoinCount===guess.skills[1].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[1].skillCoinCount}
-                    <span class="material-icons">
+                    <span className="material-icons">
                         {printArrow(correctGuess.skills[1],guess.skills[1])}
                     </span>
                 </div>
                 <div className={`guess-skill ${correctGuess.skills[2].skillCoinCount===guess.skills[2].skillCoinCount?"correct":"incorrect"}`}>{guess.skills[2].skillCoinCount}
-                    <span class="material-icons">
+                    <span className="material-icons">
                         {printArrow(correctGuess.skills[2],guess.skills[2])}
                     </span>
                 </div>

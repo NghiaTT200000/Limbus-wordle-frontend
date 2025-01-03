@@ -1,4 +1,4 @@
-const apiCaller = async (endpoint,opt={})=>{
+const apiCaller = async (endpoint:string,opt={})=>{
     return await fetch(endpoint,opt)
 }
 
